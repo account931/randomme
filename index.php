@@ -4,9 +4,9 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="Content-Type" content="text/html">
-      <meta name="description" content="Генератор-рандомайзер создает случайные списки, номера для лоторей, розыграшей " />
-      <meta name="keywords" content="рандомное число, случайное число, случайные списки, номера для лоторей, розыграшей  ">
-      <title>Генератор случайных цифр, рандомайзер</title>
+      <meta name="description" content="Генератор-рандомайзер создает случайные списки, номера для лоторей, розыгрышей " />
+      <meta name="keywords" content="рандомное число, случайное число, случайные списки, номера для лоторей, розыгрышей  ">
+      <title>Генератор случайных чисел, рандомайзер</title>
   
       <!--Favicon-->
       <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -29,7 +29,7 @@
 
        <div id="headX" class="jumbotron text-center gradient" style =' background-color: ;'> <!--#2ba6cb;-->
          <h1 id="h1Text"> <span id="textChange"> Рандомайзер</span>   </h1>
-           <p class="header_p">создает случайные списки, номера для лоторей, розыграшей  <!--generates random lists, ramdomizes integers, etc--> <span class="glyphicon glyphicon-wrench"></span>
+           <p class="header_p">создает случайные списки, номера для лоторей, розыгрышей  <!--generates random lists, ramdomizes integers, etc--> <span class="glyphicon glyphicon-wrench"></span>
            </p>
 		   <p class="language"><a href="/eng">ENG</a></p>
 		   

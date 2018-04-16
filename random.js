@@ -98,7 +98,7 @@ $(document).ready(function(){
 		
 		
 		displayResults(window.text); // htmls the results/or error 
-		scrollResults(); // Scroll results
+		scrollResults("#resultFinal"); // Scroll results
 
     });
     //END Click random main Button------------------
@@ -176,7 +176,9 @@ $(document).ready(function(){
 		var ineratorX = 1;
 		for (var i =0; i < window.existed.length; i++ ) {
 			randd = window.existed[i] - 1;
-			text = text + ineratorX++ + ".) " + inputArray[randd] + "</br>";
+			
+			
+			text = text + ineratorX++ + ".)&nbsp; "  + inputArray[randd] + "</br>";
 		}
 		text = text + "</p>";
 		//alert (text);
@@ -214,6 +216,17 @@ $(document).ready(function(){
 		var inputMin = $("#randInteger_Input").val();
 	    var inputMax = $("#randInteger_Input2").val();
 		
+		//Limit the input
+		lengthX = ( inputMax - inputMin ) + 1; // calculates how many elements should be in complete array, input2 - input 1, plus 1 to be correct		
+		//if too long range, stop it
+		if (lengthX > 900000000000) {
+			alert ("More than 900000000000, make it smaller");
+			window.text = ''; 
+			return;
+		}
+		// END Limit the input
+		
+		
 		var rand = inputMin - 0.5 + Math.random() * (inputMax - inputMin + 1);
         rand = Math.round(rand);
         //return rand;
@@ -221,14 +234,13 @@ $(document).ready(function(){
 		
 		//form the answer
 		window.text = '</br><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br><center><h5 class="red">' + "Random results" + '</h5><p >';
-		text = text + "<h3 class='red'> <span class='badge badgeMine' id='tableResults'>" + rand + "</span></h3>";
+		text = text + "<h3 class='red' > <span class='badge badgeMine'  id='tableResults'>" + rand + "</span></h3>";
 		text = text + "</p></center>";
 		//alert (text);
 		// END form the answer
 		
 		
-		//displayResults(text);
-		
+		//displayResults(text);		
 		
 	}
 	
@@ -260,6 +272,7 @@ $(document).ready(function(){
 		//if too long range, stop it
 		if (window.lengh > 3000) {
 			alert ("More than 3000, make it smaller");
+			window.text = ''; 
 			return;
 		}
 		
@@ -421,7 +434,11 @@ $(document).ready(function(){
 	function clearFields()
 	{
 		$("#randList_Input").val("");
-		$("#randInteger_Input").val("");
+		$("#randInteger_Input").val(""); //2
+		$("#randInteger_Input2").val(""); //2
+		
+		$("#randIntegList_Input").val(""); //3
+		$("#randIntegList_Input2").val(""); //3
 	}
 	// **                                                                                  **
     // **************************************************************************************
@@ -459,13 +476,14 @@ $(document).ready(function(){
 	
 	
 	
-	// Scroll the page to results
-	function scrollResults() 
+	// Scroll the page to results  #resultFinal
+	function scrollResults(divName) 
 	{
 		 
          $('html, body').animate({
-            //scrollTop: $('.footer').offset().top
-            scrollTop: $('#resultFinal').offset().top
+            
+            scrollTop: $(divName).offset().top
+			//scrollTop: $('.footer').offset().top
             //scrollTop: $('.your-class').offset().top
         }, 'slow'); 
 		// END Scroll the page to results
@@ -474,6 +492,96 @@ $(document).ready(function(){
 	// **                                                                                  **
     // **************************************************************************************
     // **************************************************************************************
+	
+	
+	
+	
+	function scroll_toTop() 
+	{
+	    $("html, body").animate({ scrollTop: 0 }, "slow");	
+	}
+	// **                                                                                  **
+    // **************************************************************************************
+    // **************************************************************************************
+	
+	
+	
+	
+	
+	
+	
+	
+	//----------------------------------------------------
+    //Click Instruction  Button
+    $("#instructionButton").click(function(){ 
+    $("#hiddenInstructions").toggle(1000); //show or hide
+	
+	
+    if( $("#instructionButton").attr("value")=="instructions")
+    { 
+        $("#instructionButton").val("Close"); 
+		$("#instructionButton").css("background","red"); 
+        scroll_toTop();   
+    } else { 
+        $("#instructionButton").val("instructions");$("#instructionButton").css("background","grey");
+        scrollResults('#hiddenInstructions'); 
+   }
+
+ });
+//END Click Instructions  Button
+//***********************************************
+	
+	
+	
+	
+	
+	
+	
+	
+	//----------------------------------------------------
+    //CLEAR  Button
+    $("#clearButton").click(function(){
+		
+    $("#hiddenInstructions").hide(2000);
+    $("#resultFinal").hide(1000);
+    //hide  instr  &  change  button
+    HideInstructions ();
+    //END  Hid e Instructuins  and  change  button
+	
+    scroll_toTop();
+	clearFields();
+
+ });
+//END CLEAR  Button
+//***********************************************
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -625,10 +733,16 @@ $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  resu
 
 //----------------------------------------------------
 //Click Instruction  Button
-    $("#instructionButton").click(function(){
+    $("#instructionButton_PREV").click(function(){ 
     $("#hiddenInstructions").toggle(1000);
+	
+	
 if( $("#instructionButton").attr("value")=="instructions")
-   { $("#instructionButton").val("Close");$("#instructionButton").css("background","red");} else { $("#instructionButton").val("instructions");$("#instructionButton").css("background","grey")}
+   { $("#instructionButton").val("Close");$("#instructionButton").css("background","red"); 
+   } else { 
+   $("#instructionButton").val("instructions");$("#instructionButton").css("background","grey");
+   scrollResults('#hiddenInstructions'); 
+   }
 
  });
 //END Click Instructions  Button
@@ -650,7 +764,7 @@ if( $("#instructionButton").attr("value")=="instructions")
 
 //----------------------------------------------------
 //CLEAR  Button
-    $("#clearButton").click(function(){
+    $("#clearButton_PREV").click(function(){
     $("#hiddenInstructions").hide(2000);
     $("#randList_Input").val('');
     $("#resultFinal").hide(1000);
@@ -715,7 +829,8 @@ if ( $('#hiddenInstructions').css('display') == 'none' ){} else{
 
 $("#hiddenInstructions").hide(2000);
         if( $("#instructionButton").attr("value")=="instructions")
-       { $("#instructionButton").val("Close");$("#instructionButton").css("background","red");} else { $("#instructionButton").val("instructions");$("#instructionButton").css("background","grey")}
+       { $("#instructionButton").val("Close");$("#instructionButton").css("background","red");
+   } else { $("#instructionButton").val("instructions");$("#instructionButton").css("background","grey")}
 }
 }
 //---------------------------------------------------------------
