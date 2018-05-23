@@ -8,4 +8,4 @@ In order that the same buttons work with diff div, each input div should have a 
 first input in those divs = checkboxID+"_Input". (i.e id="randListDiv")
 
 In JS:
-We detect the checkbox selected, get its ID and fire a relevant function = checkboxID+"CoreAction()", i.e (randListCoreAction())
+We detect the checkbox selected, get its ID and fire a relevant function = checkboxID+"CoreAction()", i.e (randListCoreAction()).
